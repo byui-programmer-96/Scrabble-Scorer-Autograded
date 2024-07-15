@@ -10,6 +10,7 @@ const oldPointStructure = {
   5: ['K'],
   8: ['J', 'X'],
   10: ['Q', 'Z']
+  
 };
 
 function oldScrabbleScorer(word) {
@@ -33,8 +34,29 @@ function oldScrabbleScorer(word) {
 // don't change the names or your program won't work as expected. //
 
 function initialPrompt() {
-   console.log("Let's play some scrabble! Enter a word:");
+   console.log("Let's play some scrabble! Enter a word to score: ");
+   const input = require('readline-sync');
+   let word = input.question("Enter a word to score: ");
+   
+   console.log(oldScrabbleScorer(word));
 };
+function oldScrabbleScorer(word) {
+	word = word.toUpperCase();
+	let letterPoints = "";
+ 
+	for (let i = 0; i < word.length; i++) {
+ 
+	  for (const pointValue in oldPointStructure) {
+ 
+		 if (oldPointStructure[pointValue].includes(word[i])) {
+			letterPoints += `Points for '${word[i]}': ${pointValue}\n`
+		 }
+ 
+	  }
+	}
+	return letterPoints;
+}
+
 
 let newPointStructure;
 
