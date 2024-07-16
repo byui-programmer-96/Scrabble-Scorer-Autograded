@@ -112,6 +112,18 @@ const oldPointStructure = {
     let scoringAlgorithm = scorerPrompt();
     console.log(`Score for '${word}': ${scoringAlgorithm.scoringFunction(word)}`);
  }
+function transform(oldPointStructure) {
+   let newStructure = {};
+   for (let point in oldPointStructure) {
+     let letters = oldPointStructure[point];
+     for (let i = 0; i < letters.length; i++) {
+       newStructure[letters[i].toLowerCase()] = Number(point);
+     }
+   }
+   return newStructure;
+}
+
+
 
 // Don't write any code below this line //
 // And don't change these or your program will not run as expected //
