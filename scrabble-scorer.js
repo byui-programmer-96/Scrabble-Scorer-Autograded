@@ -2,7 +2,7 @@
 
 const input = require("readline-sync");
 
-
+//oldPointStructure is an object that defines the traditional Scrabble scoring system.
 const oldPointStructure = {
    1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
    2: ['D', 'G'],
@@ -12,7 +12,7 @@ const oldPointStructure = {
    8: ['J', 'X'],
    10: ['Q', 'Z']
  };
- 
+//oldScrabbleScorer function calculates the score of a word using the traditional Scrabble scoring system
 function oldScrabbleScorer(word) {
     word = word.toUpperCase();
     let letterPoints = "";
@@ -26,13 +26,13 @@ function oldScrabbleScorer(word) {
     }
     return letterPoints;
  }
- 
+//initialPrompt function prompts the user to enter a word 
 function initialPrompt() {
     console.log("Let's play some scrabble!");
     return input.question("Enter a word: ");
  }
  
- 
+//transform function converts the oldPointStructure into a new structure where each letter is a key with its corresponding point value 
 let newPointStructure = transform(oldPointStructure);
  
 let simpleScorer = function(word) {
@@ -62,7 +62,7 @@ let scrabbleScorer = function(word) {
     }
     return score;
  };
- 
+//scoringAlgorithms is an array of objects, each representing a scoring algorithm with its name, description, and scoring function. 
 const scoringAlgorithms = [
     {
       name: "Simple Score",
@@ -80,7 +80,7 @@ const scoringAlgorithms = [
       scoringFunction: scrabbleScorer
     }
  ];
- 
+//scorerPrompt function asks the user to choose a scoring algorithm and returns the selected algorithm 
 function scorerPrompt() {
     console.log("Which scoring algorithm would you like to use?");
     for (let i = 0; i < scoringAlgorithms.length; i++) {
@@ -96,13 +96,15 @@ function scorerPrompt() {
     
     return scoringAlgorithms[selection];
  }
- 
+// runProgram Calls initialPrompt to get a word from the user. Calls scorerPrompt to let the user choose a scoring algorithm.
+// Calculates and displays the score for the word using the chosen algorithm.
+
 function runProgram() {
     let word = initialPrompt();
     let scoringAlgorithm = scorerPrompt();
     console.log(`Score for '${word}': ${scoringAlgorithm.scoringFunction(word)}`);
  }
-
+//transform function creates a new point structure where each letter is a key with its corresponding point value
 function transform(oldPointStructure) {
    let newPointStructure = {};
    
